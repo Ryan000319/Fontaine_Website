@@ -1,0 +1,362 @@
+
+/* Include the Animate.css library for animation 
+@import url('https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css'); */
+
+
+/* Temporary grid highlighting */
+
+.row {
+  background-color: rgba(255, 0, 0, 0.2); /* Red color for rows */
+}
+
+.col,
+[class*="col-"] {
+  background-color: rgba(0, 255, 0, 0.2); /* Green color for columns */
+}
+
+.container.mt-5.pt-5 {
+  /* Override Bootstrap's margins and paddings */
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+}
+
+/* Custom font face for the site */
+@font-face {
+    font-family: 'Genshin_font';
+    src: url('fonts/HYWenHei-HEW.woff2') format('woff2'),
+         url('fonts/HYWenHei-HEW.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+#left-curtain, #right-curtain {
+    position: fixed;
+    top: 0;
+    height: 100%;
+    width: 50vw; /* half of the viewport width */
+    background: url('images/curtain.jpg') no-repeat center center;
+    background-size: cover;
+    z-index: 100;
+}
+
+#left-curtain {
+    left: 0;
+    animation: slideLeft 3s forwards 0.5s; /* 2 seconds delay */
+}
+
+#right-curtain {
+    right: 0;
+    animation: slideRight 3s forwards 0.5s; /* 2 seconds delay */
+}
+
+@keyframes slideLeft {
+    to {
+        transform: translateX(-100%);
+    }
+}
+
+@keyframes slideRight {
+    to {
+        transform: translateX(100%);
+    }
+}
+
+
+/* Reset and basic styles */
+body, html {
+  margin: 0;
+  height: 100%;
+  font-family: 'Genshin_font', Arial, sans-serif;
+  overflow-x: hidden;
+}
+
+
+/* Fixed background for parallax effect */
+.fixed-background {
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.video-background-section {
+  background-color: rgba(0, 0, 0, 0.3);
+  position: relative;
+  height: 100vh; /* This sets the height of the section to the full viewport height */
+  overflow: hidden;
+    
+}
+
+.video-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%; /* This sets the width to the full viewport width */
+  height: 100%; /* This sets the height to the full viewport height */
+  object-fit: cover; /* This makes the video cover the entire container without losing aspect ratio */
+  z-index: -1; /* Sets the video behind the content */
+}
+
+
+.video-overlay-image {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  z-index: 2;
+}
+
+.video-content-container {
+  position: absolute;
+  top: calc(50% - 50px);
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 3;
+  width: 100%;
+}
+
+/* Text Box Background Section */
+.text-box-background {
+    background-size: cover;
+    background-position: center;
+    z-index: 4;
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+/* Style for Welcome Text with a backdrop */
+.welcome-text {
+    background-color: rgba(0, 0, 0, 0.0);
+    padding: 20px;
+    border-radius: 50px;
+}
+
+
+/* Style for Welcome Message */
+.welcome-text h1 {
+    color: #fff; /* Change the color if needed */
+    font-size: 2rem; /* Adjust the size as necessary */
+    margin-bottom: 0.5rem; /* Space below the h1 */
+    text-shadow: 0 0 10px #fff;
+}
+
+
+/* Positioning the play button container */
+.play-button-container {
+  position: relative; /* This changes the positioning context to relative */
+  top: 175px; /* This lowers the button by 50 pixels */
+}
+
+
+
+
+/* Style for Welcome Text with a backdrop */
+.introduction-text {
+    background-color: rgba(0, 0, 0, 0.7);
+    min-height: 100vh; /* At least 100% of the viewport height */
+    padding: 20px; /* Maintain padding within the box */
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Center content vertically */
+
+}
+
+/* Style for Welcome Message */
+.introduction-text h1 {
+    color: #fff; /* Change the color if needed */
+    font-size: 2rem; /* Adjust the size as necessary */
+    margin-bottom: 0.5rem; /* Space below the h1 */
+    text-shadow: 0 0 10px #fff;
+}
+
+.introduction-text p {
+    color: #ddd; /* Change the color if needed */
+    font-size: 1.3rem; /* Adjust the size as necessary */
+    padding: 30px;
+}
+
+
+
+/* Navbar styling */
+.navbar {
+    background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent navbar */
+    transition: background-color 0.5s ease;
+}
+
+.navbar-brand img {
+    height: auto;
+    max-height: 50px;
+}
+
+/* Glow effect for navbar links */
+.navbar .nav-link {
+    color: white !important;
+    transition: text-shadow 0.3s ease-in-out, transform 0.3s ease;
+}
+
+.navbar .nav-link:hover,
+.navbar .nav-link:focus {
+    text-shadow: 0 0 10px #fff;
+    transform: scale(1.1);
+}
+
+
+
+/* Style for Welcome Text Box */
+.text-box {
+    background-color: rgba(0, 0, 0, 0.9); /* Semi-transparent white background */
+    border-radius: 15px;
+    margin: 50px auto; /* Center the box and add vertical spacing */
+    padding: 20px;
+    max-width: 2000px; /* Adjust width as needed */
+}
+
+/* Adjust the cards styling as they are now inside the text box */
+.text-box .card {
+    margin-bottom: 20px;
+}
+
+/* Emblem logo styles */
+.emblem-logo img {
+    max-width: 100px; /* Adjust as needed */
+    margin-bottom: 20px; /* Space between logo and welcome text */
+}
+
+
+/* Adjusting the carousel placement */
+.carousel {
+    margin-top: 0; /* Adds space just below the welcome text */
+}
+
+/* Carousel Background Section */
+.carousel-background {
+  min-height: 50vh; /* Adjust this value as needed */
+  position: relative;
+  z-index: 1; /* Make sure this is below the footer z-index */
+}
+
+.carousel-background .container,
+.carousel-background .row,
+.carousel-background .col-12 {
+  padding: 0;
+  margin: 0;
+  height: 100%; /* This ensures the columns expand to the available height */
+}
+
+/* Carousel styles */
+.carousel-item {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    background-color: #000; /* Fallback color */
+    color: white;
+}
+
+.carousel-item video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+
+.carousel-caption-container {
+    position: absolute;
+    bottom: 25%;
+    left: 40%;
+    width: 50%;
+    height: auto;
+    transform: translateX(-50%);
+    animation: fadeInUp 0.5s ease forwards;
+    background-color: rgba(255, 0, 0, 0.2); /* Red color for rows */
+
+
+}
+
+.carousel-caption-content {
+    background: rgba(0, 0, 0, 0.5);
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+    filter: invert(100%);
+}
+
+
+.footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding-top: 2rem; /* Increased padding for larger footer */
+    padding-bottom: 2rem;
+    position: relative;
+    z-index: 10; /* Above all content */
+}
+
+.btn-social {
+    font-size: 1.5rem; /* Larger icons for visibility */
+    width: 50px; /* Fixed width for square buttons */
+    height: 50px; /* Fixed height for square buttons */
+    line-height: 50px; /* Center the icon vertically */
+    margin: 0 10px; /* Margin between buttons */
+    border-radius: 50%; /* Circular buttons */
+    transition: all 0.3s ease-in-out;
+}
+
+.btn-social:hover,
+.btn-social:focus {
+    color: #333;
+    background-color: #fff;
+}
+
+.footer-logo img {
+    max-width: 1000px; /* Adjust the size of the logo */
+    margin-bottom: 1rem;
+}
+
+.footer .copyright {
+    font-size: 0.8rem; /* Smaller font size for copyright */
+    margin-top: 1rem;
+}
+
+
+
+@media (max-width: 991px) {
+    .logo-image {
+        max-width: 100px; /* Smaller logo for smaller devices */
+    }
+}
+
+@media (max-width: 767px) {
+    .navbar-brand img {
+        max-height: 40px;
+    }
+    
+    .carousel-item {
+        height: 40vh; /* Smaller height for smaller devices */
+    }
+
+    .footer {
+        padding: 0.25rem 0;
+    }
+}
+
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 20px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.carousel-caption {
+  animation: fadeInUp 0.5s ease forwards;
+}
+
+

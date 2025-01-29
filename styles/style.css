@@ -1,0 +1,936 @@
+
+
+/* Temporary grid highlighting
+
+.row {
+  background-color: rgba(255, 0, 0, 0.2); 
+}
+
+.col,
+[class*="col-"] {
+  background-color: rgba(0, 255, 0, 0.2); 
+}
+*/
+
+
+/* Custom font face for the site */
+@font-face {
+    font-family: 'Genshin_font';
+    src: url('fonts/HYWenHei-HEW.woff2') format('woff2'),
+         url('fonts/HYWenHei-HEW.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+#left-curtain, #right-curtain {
+    position: fixed;
+    top: 0;
+    height: 100%;
+    width: 50vw; /* half of the viewport width */
+    background: url('images/curtain.jpg') no-repeat center center;
+    background-size: cover;
+    z-index: 100;
+}
+
+#left-curtain {
+    left: 0;
+    animation: slideLeft 3s forwards 0.5s; /* 2 seconds delay */
+}
+
+#right-curtain {
+    right: 0;
+    animation: slideRight 3s forwards 0.5s; /* 2 seconds delay */
+}
+
+@keyframes slideLeft {
+    to {
+        transform: translateX(-100%);
+    }
+}
+
+@keyframes slideRight {
+    to {
+        transform: translateX(100%);
+    }
+}
+
+#sidebar {
+  position: fixed; /* Fixed position regardless of scroll */
+  top: 50%; /* Center vertically */
+  right: 0; /* Stick to the left */
+  transform: translateY(-50%); /* Center relative to its height */
+  width: auto; /* Narrower width for a more professional look */
+  z-index: 1050; /* Higher z-index to float above other content */
+  background-color: rgba(0, 0, 0, 0.6); /* Semi-transparent dark background */
+  border-radius: 20px 0 0 20px; /* Rounded corners on the right */
+  padding: 1rem; /* Padding at the top and bottom */
+    border: 2px solid white;
+    box-shadow: 0 0 10px white; /* Glowing effect for the border */
+    
+}
+
+.nav-link {
+  color: white; /* White text for better contrast */
+  padding: 0.5rem 1rem; /* Spacing around the text */
+  text-align: left; /* Center the text */
+  transition: color 0.3s ease, background-color 0.3s ease;
+}
+
+
+.nav-link:hover,
+.nav-link:focus,
+.nav-link.active {
+  color: white; /* Highlight color */ /* Background for the active item */
+}
+
+/* Style to remove the default blue outline on focused elements for a cleaner look */
+.nav-link:focus {
+  box-shadow: none;
+}
+
+/* Correcting the nav-pills class influence */
+.nav-pills .nav-link.active,
+.nav-pills .show>.nav-link {
+  color: white; /* Bootstrap active link color */
+  background-color: transparent; /* Remove default blue background */
+  font-weight: bold;
+
+}
+
+/* Reset and basic styles */
+body, html {
+  margin: 0;
+  height: 100%;
+  font-family: 'Genshin_font', Arial, sans-serif;
+  overflow-x: hidden;
+    scroll-behavior: smooth;
+    min-height: 100vh; /* Minimum body height of viewport height */
+    padding:0;
+    position: relative; 
+    display: flex;
+    flex-direction: column;
+}
+
+
+/* Fixed background for parallax effect */
+.fixed-background {
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.video-background-section {
+  background-color: rgba(0, 0, 0, 0.2);
+  position: relative;
+  min-height: 100vh; /* This sets the height of the section to the full viewport height */
+  overflow: visible;
+    display: flex;      /* Enable flexbox */
+    align-items: center; /* Vertically center the content */
+    justify-content: center; /* Horizontally center the content */
+    
+}
+
+.video-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%; /* This sets the width to the full viewport width */
+  height: 100%; /* This sets the height to the full viewport height */
+  object-fit: cover; /* This makes the video cover the entire container without losing aspect ratio */
+  z-index: -1; /* Sets the video behind the content */
+}
+
+.video-background-blur {
+    filter: blur(0.25rem); /* Adjust the px value to control the amount of blur */
+}
+
+.video-overlay-image {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  z-index: 2;
+}
+
+.video-content-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: flex-end; /* Align to the right */
+  align-items: flex-end; /* Align to the bottom */
+    
+}
+
+/* Text Box Background Section */
+.text-box-background {
+    background-size: cover;
+    background-position: center;
+    z-index: 4;
+    padding-top: 0; 
+    padding-bottom: 0;
+    margin-top: 0; 
+    position: relative; 
+}
+
+/* Style for Welcome Text with a backdrop */
+.welcome-text {
+    padding-top: 80px;
+    padding-right: 100px;
+    padding-bottom: 150px;
+}
+
+
+/* Style for Welcome Message */
+.welcome-text h1 {
+    color: #fff; /* Change the color if needed */
+    font-size: 2rem; /* Adjust the size as necessary */
+    margin-bottom: 2rem; /* Space below the h1 */
+    text-shadow: 0 0 10px #fff;
+}
+
+
+/* Positioning the play button container */
+.play-button-container {
+  position: relative; /* This changes the positioning context to relative */
+  top: 175px;
+z-index: 2;
+    /* This lowers the button by 50 pixels */
+}
+
+
+
+
+/* Style for Welcome Text with a backdrop */
+.introduction-text {
+    background-color: rgba(0, 0, 0, 0.7);
+    min-height: 100vh; /* At least 100% of the viewport height */
+    padding: 20px; /* Maintain padding within the box */
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Center content vertically */
+    z-index: 2;
+}
+
+/* Style for Welcome Message */
+.introduction-text h1 {
+    color: #fff; /* Change the color if needed */
+    font-size: 2rem; /* Adjust the size as necessary */
+    margin-bottom: 0.5rem; /* Space below the h1 */
+    text-shadow: 0 0 10px #fff;
+}
+
+.introduction-text p {
+    color: #ddd; /* Change the color if needed */
+    font-size: 1.3rem; /* Adjust the size as necessary */
+    padding: 30px;
+}
+
+
+
+/* Navbar styling */
+.navbar {
+    background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent navbar */
+    transition: background-color 0.5s ease;
+}
+
+.navbar-brand img {
+    height: auto;
+    max-height: 50px;
+}
+
+/* Glow effect for navbar links */
+.navbar .nav-link {
+    color: white !important;
+    transition: text-shadow 0.3s ease-in-out, transform 0.3s ease;
+}
+
+.navbar .nav-link:hover,
+.navbar .nav-link:focus {
+    text-shadow: 0 0 10px #fff;
+    transform: scale(1.1);
+}
+
+
+
+/* Style for Welcome Text Box */
+.text-box {
+    background-color: rgba(0, 0, 0, 0.9); /* Semi-transparent white background */
+    border-radius: 15px;
+    margin: 50px auto; /* Center the box and add vertical spacing */
+    padding: 20px;
+    max-width: 2000px; /* Adjust width as needed */
+}
+
+/* Adjust the cards styling as they are now inside the text box */
+.text-box .card {
+    margin-bottom: 20px;
+}
+
+/* Emblem logo styles */
+.emblem-logo img {
+    max-width: 100px; /* Adjust as needed */
+    margin-bottom: 20px; /* Space between logo and welcome text */
+}
+
+
+
+
+.interactive-card-section {
+  position: relative;
+  overflow: hidden;
+  padding: 50px 0; /* Space for the prompt text */
+    height: 100vh;
+}
+
+.interactive-card {
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 30px;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  overflow: hidden;
+}
+
+/* Card image container */
+.interactive-card .card-image-container {
+  position: relative;
+  overflow: hidden; /* Hide overflow to maintain border-radius */
+}
+
+/* Card image styles */
+.card-img-top {
+  transition: opacity 0.3s ease;
+  height: 500px; /* Fixed height for image */
+  object-fit: cover;
+    filter: blur(0.3px);
+}
+
+/* Card title styles */
+.card-title {
+  position: absolute;
+  bottom: 10px; /* Position title at the bottom of the image */
+  left: 0;
+  width: 100%;
+  text-align: center;
+  color: #333;
+  background: rgba(255, 255, 255, 0.6); /* Semi-transparent background */
+  padding: 10px 0;
+  font-size: 1.2rem; /* Larger font size for visibility */
+  transition: background-color 0.3s ease;
+}
+
+/* Card text styles */
+.card-text {
+  display: none; /* Hide text by default */
+  transition: opacity 0.3s ease;
+}
+
+/* Interactive card hover effects */
+.interactive-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 15px rgba(255, 255, 255, 0.6);
+}
+
+.interactive-card:hover .card-img-top {
+  opacity: 0.8; /* Dim the image slightly on hover */
+  filter: brightness(90%); 
+}
+
+.interactive-card:hover .card-title {
+  background-color: rgba(255, 255, 255, 0.5); /* Lighten the background on hover */
+  color: #fff; /* Change title color on hover */
+  text-shadow: 0 0 8px rgba(255, 255, 255, 0.8); /* Glow effect */
+}
+
+.interactive-card:hover .card-text {
+  display: block; /* Show text on hover */
+  opacity: 1; /* Fade in effect for text */
+}
+
+/* Prompt text styling */
+#prompt-text h1 {
+  font-size: 2.5rem;
+  color: #fff;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+  margin-top: 10rem;
+    margin-bottom: 2rem;
+    
+}
+
+.footer {
+    position: relative; /* Adjust based on layout needs, could be 'fixed' if you want it always visible */
+    bottom: 0;
+    width: 100%;
+    height: auto;
+    background-color: #ffffff;
+    color: white;
+    text-align: center;
+    padding: 1rem 0; /* Adjust padding to control height */
+    z-index: 10; /* Make sure it's above other content but not interfering */
+}
+
+.btn-social {
+    font-size: 1.5rem; /* Larger icons for visibility */
+    width: 50px; /* Fixed width for square buttons */
+    height: 50px; /* Fixed height for square buttons */
+    line-height: 50px; /* Center the icon vertically */
+    margin: 0 10px; /* Margin between buttons */
+    border-radius: 50%; /* Circular buttons */
+    transition: all 0.3s ease-in-out;
+}
+
+.btn-social:hover,
+.btn-social:focus {
+    color: #333;
+    background-color: #fff;
+}
+
+.footer-logo img {
+    max-width: 1000px; /* Adjust the size of the logo */
+    margin-bottom: 1rem;
+}
+
+.footer .copyright {
+    font-size: 0.8rem; /* Smaller font size for copyright */
+    margin-top: 1rem;
+}
+
+
+
+@media (max-width: 991px) {
+    .logo-image {
+        max-width: 100px; /* Smaller logo for smaller devices */
+    }
+    
+    .interactive-card {
+        margin-bottom: 2rem; /* Provide spacing for stacked cards on smaller screens */
+    }
+}
+
+@media (max-width: 767px) {
+    .navbar-brand img {
+        max-height: 40px;
+    }
+    
+    .carousel-item {
+        height: 40vh; /* Smaller height for smaller devices */
+    }
+
+    .footer {
+        padding: 0.25rem 0;
+    }
+}
+
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 20px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.carousel-caption {
+  animation: fadeInUp 0.5s ease forwards;
+}
+
+
+
+
+/* History webpage */
+.history-welcome-message {
+    position: absolute;
+    top: 50% ;
+    left: 0;
+    background: rgba(0, 0, 0, 0.5); /* Semi-transparent black background for text */
+    color: white;
+    padding: 2rem;
+    margin: 4rem; /* Adjust as needed for spacing from the bottom right corner */
+    border-radius: 0.5rem;
+    text-align: start;
+    max-width: 35%; /* Adjust width as per design requirements */
+    z-index: 5; /* Ensure it's above the background video */
+    border-radius: 40px;
+    border: 2px solid white; /* White border */
+    box-shadow: 0 0 10px white; /* Glowing effect for the border */
+    
+}
+
+
+
+/* Optional: Animation for the welcome message */
+.history-welcome-message[data-aos="fade-up"] {
+    transform: translate3d(0, 100px, 0);
+}
+
+@media (max-width: 768px) {
+    .history-welcome-message {
+        margin: 2rem;
+        max-width: 100%;
+        text-align: center;
+        bottom: 10%; /* Adjust for mobile screens */
+    }
+}
+
+.history-section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 50px 15px; /* Adjust padding */
+  color: #fff;
+  position: relative;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+    
+}
+
+
+/* Container for the text content */
+.history-text-container {
+    margin-top: 500px;
+    
+  max-width: 65%;
+    
+  background: rgba(0, 0, 0, 0.8);
+  padding: 30px;
+  border-radius: 35px;
+  z-index: 2;
+  border: 2px solid white;
+    border: 2px solid white; /* White border */
+    box-shadow: 0 0 10px white; /* Glowing effect for the border */
+}
+
+/* Style for the carousel section */
+.character-carousel-section {
+  position: relative;
+  height: 100vh; /* Adjust height as needed */
+}
+
+/* Style for video background */
+.video-background {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  top: 0;
+  left: 0;
+  z-index: -2;
+}
+
+.character-carousel-section {
+  position: relative;
+  height: 100vh;
+  color: #fff;
+}
+
+.carousel {
+  height: 100%;
+}
+
+.carousel-inner {
+  height: 100%;
+}
+
+.carousel-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.carousel-item {
+    height: 100%;
+}
+.carousel-character {
+    bottom: 0;
+    max-width: 100%;
+    height: 1010px;
+}
+
+.carousel-quote {
+    padding: 2rem;
+    font-size: 1rem;
+    text-align: left;
+    top:15%;
+    right: 10%;
+    max-width: 100%;
+    max-height: 60%;
+    word-wrap: break-word;
+    overflow: auto;
+   
+}
+
+.carousel-caption {
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+    padding: 2rem;
+    border-radius: 45px;
+    text-align: left;
+    top:15%;
+    left: 10%;
+    max-width: 25%;
+    max-height: 60%;
+    border: 2px solid white; /* White border */
+    box-shadow: 0 0 10px white; /* Glowing effect for the border */
+    word-wrap: break-word;
+    overflow: auto;
+   
+}
+
+
+.carousel-caption-name{
+    border-radius: 55px;
+    border: 2px solid white; /* White border */
+    box-shadow: 0 0 10px white; /* Glowing effect for the border */
+    padding-top: 1.5rem;
+    padding-bottom: 1rem;
+    text-align: center;
+}
+.carousel-control-prev,
+.carousel-control-next {
+  filter: invert(100%);
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  background-size: 100%, 100%;
+}
+
+
+/* This will ensure that captions are visible and legible */
+.carousel-caption h5 {
+  font-size: 1.5rem; /* Large enough for readability */
+  font-weight: bold;
+}
+
+.carousel-caption p {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    
+  font-size: 1rem;
+}
+
+/* Adjustments for navigation arrows */
+.carousel-control-prev,
+.carousel-control-next {
+    top: 80%;
+    margin-left: 20%;
+    margin-right: 20%;
+  width: 4rem; /* Larger click area */
+  height: 4rem; /* Larger click area */
+  outline: none;
+  border: none;
+  background: none;
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  width: 3rem;
+  height: 3rem;
+}
+
+.carousel-control-prev-icon {
+  background-image: url('icons/previous.png');
+  background-size: contain;
+}
+
+.carousel-control-next-icon {
+  background-image: url('icons/next.png');
+  background-size: contain;
+}
+
+/* Override Bootstrap padding */
+.container-fluid.p-5 {
+    padding: 0 !important;
+}
+
+.video-responsive {
+  position: relative;
+  padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+  height: 0;
+  overflow: hidden;
+}
+
+.video-responsive iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/* Music Player Controls Styling */
+.music-player-controls {
+    position: absolute;
+    top: 50%; /* Adjusted for better centering */
+    left: 25%; /* Center horizontally */
+    transform: translate(-50%, -50%); /* Center on both axes */
+    width: 50%; /* Responsive width */
+    max-width: 300px; /* Maximum width to maintain aesthetics */
+    padding: 10px; /* Ample padding around the contents */
+    background-color: rgba(255, 255, 255, 0.1); /* Slight transparency */
+    backdrop-filter: blur(10px); /* Glassmorphism effect */
+    border-radius: 25px; /* Rounded corners */
+    border: 2px solid white; /* White border for visibility */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5); /* Subtle shadow for depth */
+    display: flex; /* Using Flexbox for layout */
+    flex-direction: column; /* Stack children vertically */
+    justify-content: space-around; /* Even spacing around items */
+    align-items: center; /* Center align the items */
+    color: #FFF;
+    overflow: hidden; /* Prevents any child from overflowing */
+}
+
+.custom-icon {
+    display: block;
+    margin: 0 auto 30px; /* Center the icon and give space below it */
+    height: 200px; /* Set your desired height */
+    width: auto; /* Maintain aspect ratio */
+}
+
+.rotating-icon {
+    animation: spin 5s linear infinite;
+}
+
+@keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+
+
+.music-player-controls .now-playing {
+    text-align: center;
+    margin: 2rem;
+}
+
+.volume-control i {
+    margin-right: 10px;
+}
+
+/* Adjust the font size and spacing for better legibility */
+.music-player-controls button { /* Space between buttons */
+    padding: 10px 20px; /* Easier to tap on touch devices */
+    font-size: 24px; /* Large enough for easy interaction */
+    background: none; /* No background for a cleaner look */
+    border: none; /* No border for a cleaner look */
+    color: white; /* White color for visibility */
+}
+
+/* Ensure buttons don't have an outline when focused for a clean design */
+.music-player-controls button:focus {
+    outline: none; /* Removes the default focus outline */
+    box-shadow: none; /* Removes the default focus shadow */
+}
+
+/* Enhanced visual feedback on hover */
+.music-player-controls button:hover {
+    color: #1DA1F2; /* Light blue for a pleasant hover effect */
+    cursor: pointer; /* Indicates an interactive element */
+}
+
+/* Styling for the volume control and its icon */
+.volume-control {
+    display: flex;
+    align-items: center; /* Aligns the slider and icon vertically */
+    width: 100%; /* Full width to use all available space */
+}
+
+.volume-slider {
+    width: 75%; /* Slider takes most of the space */
+    margin-left: 10px; /* Space between icon and slider */
+}
+
+
+.form-container {
+    display: flex;
+    flex-wrap: wrap; /* Allows items to wrap as needed */
+    justify-content: space-around; /* Distributes space around items */
+    padding: 1rem; /* Adds padding around the container */
+    width: auto;        /* Adjust this as necessary */
+    max-width: 1200px; /* Adjust based on preference */
+    margin: auto; /* Centers the container horizontally */
+}
+
+fieldset {
+    margin-bottom: 10px;
+    padding: 20px;
+    width: 1000px;
+    border: 2px solid #FFD700; /* Golden border for fieldset */
+    border-radius: 30px; /* Rounded borders */
+    background: rgba(255, 255, 255, 0.9); /* Slightly more opaque white for fieldset background */
+}
+
+legend {
+    width: auto;
+    padding: 0 10px;
+    font-size: 1.5rem;
+    color: #333;
+    font-weight: bold;
+}
+
+.form-label {
+    color: #555; /* Darker text for better contrast */
+    font-weight: bold;
+}
+
+.input-group-text {
+    background: #f8f9fa; /* Light grey background for input group text */
+    border: 1px solid #ced4da; /* Standard bootstrap border color for inputs */
+    color: #495057; /* Dark grey text for input label */
+}
+
+input[type="text"],
+input[type="password"],
+input[type="email"],
+select,
+textarea {
+    background-color: #ffffff; /* White background for inputs */
+    border: 1px solid #ced4da;
+    border-radius: 5px; /* Rounded borders for inputs */
+    padding: 10px;
+    font-size: 16px;
+    color: #333; /* Dark grey text for inputs */
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus,
+input[type="email"]:focus,
+select:focus,
+textarea:focus {
+    border-color: #FFD700; /* Golden border for focus */
+    box-shadow: 0 0 5px rgba(255,215,0,0.5); /* Soft outer glow for focus */
+}
+
+.invalid-feedback {
+    display: none;
+    color: red;
+    font-size: 0.875em;
+}
+
+input.ng-invalid.ng-touched + .invalid-feedback {
+    display: block;
+}
+
+.confirmation-details {
+    background: rgba(255, 255, 255, 0.85);
+    padding: 20px;
+    border: 2px solid #FFD700; /* Golden border for fieldset */
+    border-radius: 30px; /* Rounded borders */
+    box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
+    max-width: 960px; /* Control width for better readability */
+    margin: auto; /* Center it */
+}
+
+.confirmation-details p {
+    font-size: 1rem;
+    color: #333; /* Darker font color for readability */
+    padding: 5px 0; /* Vertical padding for separation */
+}
+
+.confirmation-details h2 {
+    color: #444;
+    margin-bottom: 20px;
+}
+
+.table {
+    background-color: rgba(255, 255, 255, 0.9); /* Light white background for readability */
+    border-radius: 0.5rem;
+    overflow: hidden; /* Ensures the border-radius applies if the table has a border */
+}
+
+.table th {
+    background-color: #f8f9fa; /* Slightly darker background for headers for contrast */
+    color: #333;
+}
+
+.table td, .table th {
+    border-color: #dee2e6; /* Keeping borders light and consistent with Bootstrap styles */
+}
+
+.form-container {
+    overflow: hidden; /* Helps maintain the border-radius effect on the container */
+    padding: 20px; /* Adjusted padding for better spacing inside the container */
+}
+
+.confirmation-details {
+    max-width: 960px; /* Optimal width for better readability */
+    margin: 20px auto; /* Auto margins for horizontal centering */
+}
+
+
+
+@media (max-width: 768px) {
+        .history-section {
+            flex-direction: column;
+            text-align: center;
+        }
+
+        /* Center text container on smaller screens */
+        .history-section .history-text-container {
+             margin: 0 auto; 
+        }
+
+       .carousel-container {
+        flex-direction: column;
+      }
+
+      .carousel-character {
+        max-width: 80%;
+      }
+
+      .carousel-caption {
+        margin-top: 1rem;
+        text-align: center;
+        max-width: 100%;
+      }
+
+    .music-player-controls {
+        width: 80%; /* Wider on small screens for better visibility */
+        top: 50%; /* Perfect center vertically */
+        padding: 15px; /* Slightly less padding on smaller screens */
+    }
+
+    .custom-icon {
+        height: 120px; /* Smaller icon on small screens */
+    }
+
+    .music-player-controls button {
+        margin: 0 10px;
+    }
+
+    .slider-label {
+        font-size: 14px;
+    }
+    .volume-slider {
+        width: 60%; /* Smaller slider on small screens */
+    }
+    
+    .footer {
+        padding: 0.5rem 0; /* Less padding on smaller screens */
+    }
+    
+    .confirmation-details .row {
+        flex-direction: column;
+    }
+
+    .confirmation-details .col-md-6 {
+        margin-bottom: 10px;
+    }
+}
+
+#app {
+    flex: 1; /* This ensures that the app container takes all available space */
+}
+
+
+
